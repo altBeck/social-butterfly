@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Tan Nimbus";
+  src: local("Tan Nimbus"), local("TAN Nimbus");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amoresa";
+  src: local("Amoresa");
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,19 +20,76 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Poppins", Arial, Helvetica, sans-serif;
+  --font-heading: "Tan Nimbus", Georgia, serif;
+  --font-display: "Amoresa", "Brush Script MT", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-synthesis: none;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+@keyframes butterfly-float {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translate3d(0.35rem, -0.6rem, 0) rotate(1deg);
+  }
+
+  100% {
+    transform: translate3d(-0.25rem, -0.2rem, 0) rotate(-1deg);
+  }
+}
+
+.butterfly-float {
+  animation: butterfly-float 6.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.butterfly-hover {
+  cursor: default;
+  transform-origin: center;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.butterfly-hover:hover {
+  transform: translate3d(0, -0.25rem, 0) rotate(-3deg) scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .butterfly-float {
+    animation: none;
+  }
+
+  .butterfly-hover {
+    transition: none;
+  }
+
+  .butterfly-hover:hover {
+    transform: none;
+  }
 }
