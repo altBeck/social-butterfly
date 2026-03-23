@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Tan Nimbus";
-  src: local("Tan Nimbus"), local("TAN Nimbus");
+  font-family: "EB Garamond";
+  src: local("EB Garamond");
   font-display: swap;
 }
 
@@ -17,11 +17,16 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.25rem;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Poppins", Arial, Helvetica, sans-serif;
-  --font-heading: "Tan Nimbus", Georgia, serif;
+  --font-heading: "EB Garamond", Georgia, serif;
   --font-display: "Amoresa", "Brush Script MT", cursive;
 }
 
@@ -48,48 +53,46 @@ p {
   text-wrap: pretty;
 }
 
-@keyframes butterfly-float {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(-2deg);
-  }
-
-  50% {
-    transform: translate3d(0.35rem, -0.6rem, 0) rotate(1deg);
-  }
-
+@keyframes brand-fix-arrow-spring {
+  0%,
   100% {
-    transform: translate3d(-0.25rem, -0.2rem, 0) rotate(-1deg);
+    left: 0;
+  }
+
+  22% {
+    left: 0.34rem;
+  }
+
+  42% {
+    left: -0.08rem;
+  }
+
+  60% {
+    left: 0.18rem;
+  }
+
+  76% {
+    left: -0.04rem;
   }
 }
 
-.butterfly-float {
-  animation: butterfly-float 6.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  transform-origin: center;
-  will-change: transform;
+.brand-fix-cta-arrow {
+  animation: brand-fix-arrow-spring 1.9s cubic-bezier(0.34, 1.56, 0.64, 1)
+    infinite;
+  will-change: left;
 }
 
-.butterfly-hover {
-  cursor: default;
-  transform-origin: center;
-  transition:
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 180ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.butterfly-hover:hover {
-  transform: translate3d(0, -0.25rem, 0) rotate(-3deg) scale(1.02);
+.brand-fix-cta:hover .brand-fix-cta-arrow,
+.brand-fix-cta:focus-visible .brand-fix-cta-arrow {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .butterfly-float {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .brand-fix-cta-arrow {
     animation: none;
-  }
-
-  .butterfly-hover {
-    transition: none;
-  }
-
-  .butterfly-hover:hover {
-    transform: none;
   }
 }
