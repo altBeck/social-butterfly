@@ -27,7 +27,7 @@ const HowItWorksSection = () => {
   return (
     <section className="w-full bg-[#D2E0ED] text-[#5A4335]">
       <div className="mx-auto flex w-full max-w-[692px] flex-col px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
-        <h2 className="text-center text-[3rem] leading-[0.9] tracking-[-0.07em] sm:text-[5.5rem] lg:text-[6.25rem]">
+        <h2 className="text-center text-[3rem] leading-[0.9] tracking-[-0.07em] text-[#2F3842] sm:text-[5.5rem] lg:text-[6.25rem]">
           How it works
         </h2>
 
