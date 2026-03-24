@@ -4,14 +4,25 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+type NavLink = {
+  href: string;
+  label: string;
+};
 
-  const navLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
-  ];
+type HeaderProps = {
+  navLinks?: NavLink[];
+  activeLabel?: string;
+};
+
+const defaultNavLinks: NavLink[] = [
+  { href: "#services", label: "Services" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+  { href: "/insights", label: "Blog" },
+];
+
+const Header = ({ navLinks = defaultNavLinks, activeLabel }: HeaderProps) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="w-full bg-[#f8f6f3]">
@@ -59,7 +70,12 @@ const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative inline-flex min-h-11 items-center py-1 text-[#363636] transition-[color,transform] duration-150 after:absolute after:bottom-[0.15rem] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-[#6c58f4] after:transition-transform after:duration-150 after:content-[''] hover:text-[#091D55] hover:after:scale-x-100 focus-visible:text-[#091D55] focus-visible:outline-none focus-visible:after:scale-x-100 active:scale-[0.98]"
+                aria-current={link.label === activeLabel ? "page" : undefined}
+                className={`relative inline-flex min-h-11 items-center py-1 text-[#363636] transition-[color,transform] duration-150 after:absolute after:bottom-[0.15rem] after:left-0 after:h-[2px] after:w-full after:origin-left after:rounded-full after:bg-[#6c58f4] after:transition-transform after:duration-150 after:content-[''] hover:text-[#091D55] hover:after:scale-x-100 focus-visible:text-[#091D55] focus-visible:outline-none focus-visible:after:scale-x-100 active:scale-[0.98] ${
+                  link.label === activeLabel
+                    ? "text-[#091D55] after:scale-x-100"
+                    : "after:scale-x-0"
+                }`}
               >
                 {link.label}
               </Link>

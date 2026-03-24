@@ -25,7 +25,7 @@ const HowItWorksSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="w-full bg-[#D2E0ED] text-[#5A4335]">
+    <section className="w-full bg-[#D2E0ED] text-[#45505C]">
       <div className="mx-auto flex w-full max-w-[692px] flex-col px-5 py-16 sm:px-6 sm:py-20 lg:py-24">
         <h2 className="text-center text-[3rem] leading-[0.9] tracking-[-0.07em] text-[#2F3842] sm:text-[5.5rem] lg:text-[6.25rem]">
           How it works
@@ -39,11 +39,11 @@ const HowItWorksSection = () => {
             return (
               <div
                 key={step.title}
-                className={isLast ? "" : "border-b border-[#5A4335]/38"}
+                className={isLast ? "" : "border-b border-[#45505C]/28"}
               >
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-6 py-4 text-center text-[1.15rem] uppercase tracking-[0.16em] text-[#5A4335] transition-colors duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#433226] focus-visible:text-[#433226] focus-visible:outline-none sm:text-[1.3rem]"
+                  className="flex w-full items-center justify-between gap-6 py-4 text-center text-[1.15rem] uppercase tracking-[0.16em] text-[#45505C] transition-colors duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#2F3842] focus-visible:text-[#2F3842] focus-visible:outline-none sm:text-[1.3rem]"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
                 >
                   <span className="flex-1 text-center">{step.title}</span>
@@ -67,7 +67,7 @@ const HowItWorksSection = () => {
                   }`}
                 >
                   <div className="min-h-0">
-                    <p className="max-w-[40rem] text-left text-[1.05rem] leading-[1.65] tracking-[-0.03em] text-[#5A4335]/80 sm:text-[1.12rem]">
+                    <p className="max-w-[40rem] text-left text-[1.05rem] leading-[1.65] tracking-[-0.03em] text-[#45505C]/82 sm:text-[1.12rem]">
                       {step.content}
                     </p>
                   </div>
