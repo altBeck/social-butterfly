@@ -1,10 +1,12 @@
 import { client } from "@/tina/__generated__/client";
 
-type PostNode = NonNullable<
+type PostEdgeNode = NonNullable<
   NonNullable<
     Awaited<ReturnType<typeof client.queries.postConnection>>["data"]["postConnection"]["edges"]
   >[number]
 >["node"];
+
+type PostNode = NonNullable<PostEdgeNode>;
 
 export type PostSummary = {
   slug: string;
@@ -49,6 +51,7 @@ function normaliseContent(content: unknown): EditorialBlock[] {
 
     const type = block?.type?.trim();
     const text = block?.text?.trim();
+    const level = block?.meta?.level;
 
     if (!type || !text) {
       return [];
@@ -63,10 +66,7 @@ function normaliseContent(content: unknown): EditorialBlock[] {
           {
             type,
             text,
-            meta:
-              typeof block.meta?.level === "number"
-                ? { level: block.meta.level }
-                : undefined,
+            meta: typeof level === "number" ? { level } : undefined,
           },
         ];
 
@@ -86,7 +86,7 @@ function normalisePost(node: PostNode): FullPost {
     authorImage: node.authorImage,
     date: node.date,
     coverImage: node.coverImage,
-    tags: node.tags?.filter(Boolean) ?? [],
+    tags: node.tags?.filter((tag): tag is string => Boolean(tag)) ?? [],
     content: normaliseContent(node.content ?? []),
   };
 }
@@ -128,7 +128,9 @@ export async function getPostBySlug(slug: string) {
         relativePath: `${slug}.${extension}`,
       });
 
-      return normalisePost(result.data.post);
+      if (result.data.post) {
+        return normalisePost(result.data.post);
+      }
     } catch {
       continue;
     }
