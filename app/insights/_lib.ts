@@ -17,6 +17,8 @@ export type PostSummary = {
   authorImage?: string | null;
   date?: string | null;
   coverImage?: string | null;
+  photoCreditName?: string | null;
+  photoCreditUrl?: string | null;
   tags: string[];
 };
 
@@ -86,6 +88,8 @@ function normalisePost(node: PostNode): FullPost {
     authorImage: node.authorImage,
     date: node.date,
     coverImage: node.coverImage,
+    photoCreditName: node.photoCreditName,
+    photoCreditUrl: node.photoCreditUrl,
     tags: node.tags?.filter((tag): tag is string => Boolean(tag)) ?? [],
     content: normaliseContent(node.content ?? []),
   };

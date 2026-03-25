@@ -84,6 +84,16 @@ export default defineConfig({
           },
           {
             type: "string",
+            name: "photoCreditName",
+            label: "Photo Credit Name",
+          },
+          {
+            type: "string",
+            name: "photoCreditUrl",
+            label: "Photo Credit URL",
+          },
+          {
+            type: "string",
             name: "tags",
             label: "Tags",
             list: true,
