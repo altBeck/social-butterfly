@@ -1,4 +1,5 @@
 import { client } from "@/tina/__generated__/client";
+import { formatPostDate } from "@/lib/blog";
 
 type PostEdgeNode = NonNullable<
   NonNullable<
@@ -97,18 +98,6 @@ function normalisePost(node: PostNode): FullPost {
 
 function byNewest(a: PostSummary, b: PostSummary) {
   return new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime();
-}
-
-export function formatPostDate(date?: string | null) {
-  if (!date) {
-    return "";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(date));
 }
 
 export async function getAllPosts() {

@@ -67,7 +67,7 @@ const HowItWorksSection = () => {
                   }`}
                 >
                   <div className="min-h-0">
-                    <p className="max-w-[40rem] text-left text-[1.05rem] leading-[1.65] tracking-[-0.03em] text-[#45505C]/82 sm:text-[1.12rem]">
+                    <p className="max-w-[40rem] text-center text-[1.05rem] leading-[1.65] tracking-[-0.03em] text-[#45505C]/82 sm:text-[1.12rem]">
                       {step.content}
                     </p>
                   </div>

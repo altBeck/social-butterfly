@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { formatPostDate, type PostSummary } from "@/app/insights/_lib";
+import { type PostSummary } from "@/app/insights/_lib";
+import { formatPostDate } from "@/lib/blog";
 
 type RelatedPostsProps = {
   posts: PostSummary[];

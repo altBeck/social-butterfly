@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Header } from "@/components";
-import { formatPostDate, getAllPosts } from "./_lib";
+import { formatPostDate } from "@/lib/blog";
+import { getAllPosts } from "./_lib";
 
 export const metadata: Metadata = {
   title: "Insights | Social Butterfly",
